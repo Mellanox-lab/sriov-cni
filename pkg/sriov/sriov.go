@@ -20,6 +20,8 @@ type NetlinkManager interface {
 	LinkSetVfVlan(netlink.Link, int, int) error
 	LinkSetVfVlanQos(netlink.Link, int, int, int) error
 	LinkSetVfHardwareAddr(netlink.Link, int, net.HardwareAddr) error
+	LinkSetVfPortGUID(netlink.Link, int, net.HardwareAddr) error
+	LinkSetVfNodeGUID(netlink.Link, int, net.HardwareAddr) error
 	LinkSetHardwareAddr(netlink.Link, net.HardwareAddr) error
 	LinkSetUp(netlink.Link) error
 	LinkSetDown(netlink.Link) error
@@ -54,6 +56,16 @@ func (n *MyNetlink) LinkSetVfVlanQos(link netlink.Link, vf, vlan, qos int) error
 // LinkSetVfHardwareAddr using NetlinkManager
 func (n *MyNetlink) LinkSetVfHardwareAddr(link netlink.Link, vf int, hwaddr net.HardwareAddr) error {
 	return netlink.LinkSetVfHardwareAddr(link, vf, hwaddr)
+}
+
+// LinkSetVfNodeGUID using NetlinkManager
+func (n *MyNetlink) LinkSetVfNodeGUID(link netlink.Link, vf int, hwaddr net.HardwareAddr) error {
+	return netlink.LinkSetVfNodeGUID(link, vf, hwaddr)
+}
+
+// LinkSetVfPortGUID using NetlinkManager
+func (n *MyNetlink) LinkSetVfPortGUID(link netlink.Link, vf int, hwaddr net.HardwareAddr) error {
+	return netlink.LinkSetVfPortGUID(link, vf, hwaddr)
 }
 
 // LinkSetHardwareAddr using NetlinkManager
